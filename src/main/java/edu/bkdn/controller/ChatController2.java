@@ -9,17 +9,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ChatController {
+@RequestMapping("chat2")
+public class ChatController2 {
 
-	@MessageMapping("/chat.register")
-	@SendTo("/topic/public")
+	@MessageMapping("/chat.register2")
+	@SendTo("/topic/public/2")
 	public ChatMessage register(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 		return chatMessage;
 	}
 
-	@MessageMapping("/chat.send")
-	@SendTo("/topic/public")
+	@MessageMapping("/chat.send2")
+	@SendTo("/topic/public/2")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}
